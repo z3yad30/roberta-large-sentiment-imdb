@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IMDB Sentiment Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>IMDB Sentiment Analyzer</h1>
+      <p>Powered by fine-tuned RoBERTa-large • English movie reviews</p>
+    </header>
+
+    <main>
+      <!-- Single prediction -->
+      <section class="card single-mode">
+        <h2>Single Review</h2>
+        <form id="single-form">
+          <textarea
+            id="single-text"
+            placeholder="Paste or write a movie review here..."
+            rows="6"
+            required
+          ></textarea>
+
+          <div class="options">
+            <label>
+              <input type="checkbox" id="single-probs" checked />
+              Show probabilities
+            </label>
+          </div>
+
+          <button type="submit">Analyze</button>
+        </form>
+
+        <div id="single-result" class="result-box hidden">
+          <div class="result-label" id="single-label"></div>
+          <div class="result-confidence" id="single-confidence"></div>
+          <div class="result-prob" id="single-prob"></div>
+          <div class="result-text"><strong>Text:</strong> <span id="single-text-preview"></span></div>
+        </div>
+      </section>
+
+      <!-- Batch mode -->
+      <section class="card batch-mode">
+        <h2>Batch Analysis</h2>
+        <p>Paste multiple reviews (one per line)</p>
+
+        <form id="batch-form">
+          <textarea
+            id="batch-texts"
+            placeholder="Review one&#10;Review two&#10;Review three..."
+            rows="10"
+            required
+          ></textarea>
+
+          <div class="options">
+            <label>
+              <input type="checkbox" id="batch-probs" />
+              Show probabilities
+            </label>
+          </div>
+
+          <button type="submit">Analyze Batch</button>
+        </form>
+
+        <div id="batch-result" class="result-box hidden">
+          <h3>Results</h3>
+          <div id="batch-items"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>API: <code>http://localhost:8000</code> • Model: roberta-large-imdb</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
